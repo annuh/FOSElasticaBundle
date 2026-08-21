@@ -16,9 +16,9 @@ use FOS\ElasticaBundle\Elastica\Client;
 use FOS\ElasticaBundle\Elastica\Index;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use FOS\ElasticaBundle\Manager\RepositoryManagerInterface;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -137,10 +137,8 @@ class FOSElasticaExtension extends Extension
 
     /**
      * @param array<mixed> $config
-     *
-     * @return Configuration
      */
-    public function getConfiguration(array $config, ContainerBuilder $container)
+    public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
     {
         return new Configuration($container->getParameter('kernel.debug'));
     }
